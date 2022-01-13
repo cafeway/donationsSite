@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>HELPZ - Free Charity Website Template</title>
+        <title>Helpy -  Charity International</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free Website Template" name="keywords">
         <meta content="Free Website Template" name="description">
@@ -59,20 +59,20 @@
         <!-- Nav Bar Start -->
         <div class="navbar navbar-expand-lg bg-dark navbar-dark">
             <div class="container-fluid">
-                <a href="index.html" class="navbar-brand">Helpz</a>
+                <a href="index.html" class="navbar-brand">Helpy <small>International</small></a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="index.html" class="nav-item nav-link active">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="causes.html" class="nav-item nav-link">Causes</a>
-                        <a href="event.html" class="nav-item nav-link">Events</a>
-                        <a href="blog.html" class="nav-item nav-link">Blog</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
+                        <!-- <a href="causes.html" class="nav-item nav-link">Causes</a> -->
+                        <a href="donate.html" class="nav-item nav-link">Donate</a>
+                        <!-- <a href="blog.html" class="nav-item nav-link">Blog</a> -->
+                        <!-- <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu">
                                 <a href="single.html" class="dropdown-item">Detail Page</a>
                                 <a href="service.html" class="dropdown-item">What We Do</a>
@@ -80,7 +80,7 @@
                                 <a href="donate.html" class="dropdown-item">Donate Now</a>
                                 <a href="volunteer.html" class="dropdown-item">Become A Volunteer</a>
                             </div>
-                        </div>
+                        </div> -->
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                 </div>
@@ -118,7 +118,9 @@
                             </div>
                             <div class="donate-text">
                                 <p>
-                                    Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non. Aliquam metus tortor, auctor id gravida, viverra quis sem. Curabitur non nisl nec nisi maximus. Aenean convallis porttitor. Aliquam interdum at lacus non blandit.
+                          
+                                    Many Are In Need Of Your Helping Hand.
+                                    Just A Little Help Can Make Their Hearts Happier
                                 </p>
                             </div>
                         </div>
@@ -129,22 +131,19 @@
                                 <div class="control-group">
                                     <input type="text" class="form-control" placeholder="Name" required="required" />
                                 </div>
-                                <div class="control-group">
-                                    <input type="email" class="form-control" placeholder="Email" required="required" />
-                                </div>
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-custom active">
-                                        <input type="radio" name="options" checked> $10
-                                    </label>
-                                    <label class="btn btn-custom">
-                                        <input type="radio" name="options"> $20
-                                    </label>
-                                    <label class="btn btn-custom">
-                                        <input type="radio" name="options"> $30
-                                    </label>
-                                </div>
+                                <!-- <div class="control-group">
+                                    <input  id="donation" type="number" class="form-control" placeholder="Choose an amount to donate" required="required" />
+                                </div> -->
+                                
                                 <div>
-                                    <button class="btn btn-custom" type="submit">Donate Now</button>
+                                    <div id="paypal-button-container">
+                                        <a href="cashout.html"><button class="btn btn-custom" type="button">Donate Now</button></a>
+                                    </div>
+                                    <script>
+                                        var amount = document.getElementById("donation").value;
+                                       sessionStorage.setItem("amount", amount);
+
+                                    </script>
                                 </div>
                             </form>
                         </div>
@@ -209,10 +208,10 @@
             <div class="container copyright">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>&copy; <a href="#">Your Site Name</a>, All Right Reserved.</p>
+                        <p>&copy; <a href="#">Helpy</a>, All Right Reserved.</p>
                     </div>
                     <div class="col-md-6">
-                        <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                        <p>Designed By <a href="">Ninja Coders</a></p>
                     </div>
                 </div>
             </div>
@@ -239,8 +238,41 @@
         <!-- Contact Javascript File -->
         <script src="mail/jqBootstrapValidation.min.js"></script>
         <script src="mail/contact.js"></script>
-
+        <script src="https://www.paypal.com/sdk/js?client-id=ARYOL4biA4A8Wpthir9uJb3aFk_cD_LjpgVy00DQy3UhF4Ce_sUviZO4yMg9nb2MmkOJN3OtA-ycQ-Rx&components=YOUR_COMPONENTS"></script>
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        
+    <script>
+        paypal.Buttons({
+  
+          // Sets up the transaction when a payment button is clicked
+          createOrder: function(data, actions) {
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: '77.44' // Can reference variables or functions. Example: `value: document.getElementById('...').value`
+                }
+              }]
+            });
+          },
+  
+          // Finalize the transaction after payer approval
+          onApprove: function(data, actions) {
+            return actions.order.capture().then(function(orderData) {
+              // Successful capture! For dev/demo purposes:
+                  console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                  var transaction = orderData.purchase_units[0].payments.captures[0];
+                  alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+  
+              // When ready to go live, remove the alert and show a success message within this page. For example:
+              // var element = document.getElementById('paypal-button-container');
+              // element.innerHTML = '';
+              // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+              // Or go to another URL:  actions.redirect('thank_you.html');
+            });
+          }
+        }).render('#paypal-button-container');
+  
+      </script>
     </body>
 </html>
